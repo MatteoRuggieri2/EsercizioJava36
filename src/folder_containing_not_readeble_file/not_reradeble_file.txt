@@ -1,0 +1,5 @@
+Per rendere il file non leggibile, cambia i permessi sul file.
+
+Proprietà > Sicurezza > Modifica
+
+Nega la lettura per ogni utente
