@@ -12,20 +12,6 @@ public class FileSystemAccess implements FileSystem {
 	
 	
 	/*------------------------
-	    GETTERS AND SETTERS
-	--------------------------*/
-	// Mi serve per prendere il valore originale da mettere nei test JUnit
-	public File getFile() {
-		return file;
-	}
-
-	public void setFile(File file) {
-		this.file = file;
-	}
-	
-	
-	
-	/*------------------------
     	   CONSTRUCTORS
 	--------------------------*/
 	public FileSystemAccess() {
@@ -45,6 +31,19 @@ public class FileSystemAccess implements FileSystem {
 	
 	
 	/*------------------------
+	    GETTERS AND SETTERS
+	--------------------------*/
+	public File getFile() {
+		return file;
+	}
+
+	public void setFile(File file) {
+		this.file = file;
+	}
+	
+	
+	
+	/*------------------------
 	    OVERRIDED METHODS
 	--------------------------*/
 	@Override
@@ -55,7 +54,7 @@ public class FileSystemAccess implements FileSystem {
 	@Override
 	public String getFileName() {
 		// Se il file è presente ritorno il nome, altrimenti stringa vuota.
-		if (this.getFileCurrent().isPresent()) {
+		if (getFileCurrent().isPresent()) {
 			return this.file.getName();
 		} else {
 			return "";
@@ -74,11 +73,8 @@ public class FileSystemAccess implements FileSystem {
 
 	@Override
 	public Optional<File> getFileCurrent() {
-		// Creo un optional, in modo che il file possa essere anche null
-		Optional<File> optFile = Optional.ofNullable(this.file);
-		
-		// Ritorno optFile, tanto se this.file è vuoto "ofNullable" restituisce un Optional.empty().
-		return optFile;
+		// Ritorno un optional, se this.file è vuoto, "ofNullable" restituisce un Optional.empty().
+		return Optional.ofNullable(this.file);
 	}
 
 	@Override
