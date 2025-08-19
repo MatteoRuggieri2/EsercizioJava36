@@ -46,12 +46,12 @@ public class FileSystemAccess implements FileSystem {
 	/*------------------------
 	    OVERRIDED METHODS
 	--------------------------*/
-	@Override
+	@Override //OK
 	public void setFileNamePath(String path) {
 		this.filePath = path;
 	}
 
-	@Override
+	@Override //OK
 	public String getFileName() {
 		// Se il file è presente ritorno il nome, altrimenti stringa vuota.
 		if (getFileCurrent().isPresent()) {
@@ -61,7 +61,7 @@ public class FileSystemAccess implements FileSystem {
 		}
 	}
 
-	@Override
+	@Override //OK
 	public String getFilePath() {
 		// Se il file è presente ritorno il path assoluto, altrimenti stringa vuota.
 		if (this.getFileCurrent().isPresent()) {
@@ -71,18 +71,18 @@ public class FileSystemAccess implements FileSystem {
 		}
 	}
 
-	@Override
+	@Override //OK
 	public Optional<File> getFileCurrent() {
 		// Ritorno un optional, se this.file è vuoto, "ofNullable" restituisce un Optional.empty().
 		return Optional.ofNullable(this.file);
 	}
 
-	@Override
+	@Override //OK
 	public boolean isFile() {
 		// Se il file è null ritorno false
-		if (this.getFileCurrent().isEmpty()) {
-			return false;
-		}
+//		if (this.getFileCurrent().isEmpty()) {
+//			return false;
+//		}
 		
 		// Altrimenti faccio valutare al metodo
 		return this.file.isFile();
