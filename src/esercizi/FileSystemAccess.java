@@ -79,10 +79,10 @@ public class FileSystemAccess implements FileSystem {
 
 	@Override //OK
 	public boolean isFile() {
-		// Se il file è null ritorno false
-//		if (this.getFileCurrent().isEmpty()) {
-//			return false;
-//		}
+		// Se il file è null ritorno false per evitare che restituisca "NullPointerException"
+		if (this.getFileCurrent().isEmpty()) {
+			return false;
+		}
 		
 		// Altrimenti faccio valutare al metodo
 		return this.file.isFile();
