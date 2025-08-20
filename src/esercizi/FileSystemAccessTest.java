@@ -78,37 +78,37 @@ class FileSystemAccessTest {
 		assertEquals(testOptFile, fsa.getFileCurrent());
 	}
 	
-	@Test
+	@Test //OK
 	void testIsFileEmpty() {
 		fsa.setFile(null);
 		assertFalse(fsa.isFile());
 	}
 	
-	@Test
+	@Test //OK
 	void testIsFileSetted() {
 		fsa.setFile(new File("src/text_files/test_file.txt"));
 		assertTrue(fsa.isFile());
 	}
 	
-	@Test
+	@Test //OK
 	void testIsFileSettedFolder() {
 		fsa.setFile(new File("src/test_folder"));
 		assertFalse(fsa.isFile());
 	}
 	
-	@Test
+	@Test //OK
 	void testIsDirectoryEmpty() {
 		fsa.setFile(null);
 		assertFalse(fsa.isDirectory());
 	}
 	
-	@Test
-	void testIsDirectorySettedFile() {
+	@Test //OK
+	void testIsDirectoryWithSettedFile() {
 		fsa.setFile(new File("src/text_files/test_file.txt"));
 		assertFalse(fsa.isDirectory());
 	}
 	
-	@Test
+	@Test //OK
 	void testIsDirectorySettedDirectory() {
 		fsa.setFile(new File("src/test_empty_folder"));
 		assertTrue(fsa.isDirectory());

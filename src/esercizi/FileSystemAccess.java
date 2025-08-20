@@ -88,7 +88,7 @@ public class FileSystemAccess implements FileSystem {
 		return this.file.isFile();
 	}
 
-	@Override
+	@Override //OK
 	public boolean isDirectory() {
 		// Se il file è null ritorno false
 		if (this.getFileCurrent().isEmpty()) {
