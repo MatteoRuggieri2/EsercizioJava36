@@ -17,7 +17,7 @@ class FileSystemAccessTest {
 		fsa = new FileSystemAccess();
 	}
 	
-	@Test
+	@Test //OK
 	void testConstructorEmpty() {
 		fsa.setFile(null);
 		fsa.setFileNamePath(null);
