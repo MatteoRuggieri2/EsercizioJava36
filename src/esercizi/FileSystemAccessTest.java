@@ -37,12 +37,13 @@ class FileSystemAccessTest {
 		assertEquals(testFileNameAbsolutePath, fsa.getFilePath());
 	}
 	
-	@Test
+	@Test //OK
 	void testConstructorFile() {
 		File testFile = new File("src/text_files/test_file.txt");
+		String testFileNameAbsolutePath = srcAbsPath + "/text_files/test_file.txt";
 		fsa = new FileSystemAccess(testFile);
 		assertEquals(testFile, fsa.getFile());
-		assertEquals("C:\\Users\\SP-Formazione\\Desktop\\Matteo Ruggieri\\matteo-eclipse-workbanch\\EsercizioJava36\\src\\text_files\\test_file.txt", fsa.getFilePath());
+		assertEquals(testFileNameAbsolutePath, fsa.getFilePath());
 	}
 	
 	@Test
