@@ -3,6 +3,8 @@ package esercizi;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -11,6 +13,8 @@ import org.junit.jupiter.api.Test;
 class FileSystemAccessTest {
 	
 	static FileSystemAccess fsa;
+	final static Path projectDir = Paths.get(System.getProperty("user.dir")); // Path dinamico della project folder
+	final static String srcAbsPath = projectDir.toString() + "/src";
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -25,10 +29,10 @@ class FileSystemAccessTest {
 		assertEquals("", fsa.getFilePath());
 	}
 	
-	@Test
+	@Test //OK
 	void testConstructorFileNamePath() {
 		String testFileNamePath = "src/text_files/test_file.txt";
-		String testFileNameAbsolutePath = "C:\\Users\\SP-Formazione\\Desktop\\Matteo Ruggieri\\matteo-eclipse-workbanch\\EsercizioJava36\\src\\text_files\\test_file.txt";
+		String testFileNameAbsolutePath = srcAbsPath + "/text_files/test_file.txt";
 		fsa = new FileSystemAccess(testFileNamePath);
 		assertEquals(testFileNameAbsolutePath, fsa.getFilePath());
 	}
