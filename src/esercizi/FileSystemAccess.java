@@ -19,13 +19,13 @@ public class FileSystemAccess implements FileSystem {
 	};
 	
 	public FileSystemAccess(String fileNamePath) {
-		this.setFile(new File(fileNamePath));
-		this.setFileNamePath(fileNamePath);
+		setFile(new File(fileNamePath));
+		setFileNamePath(fileNamePath);
 	};
 	
 	public FileSystemAccess(File file) {
-		this.setFile(file);
-		this.setFileNamePath(this.getFilePath());
+		setFile(file);
+		setFileNamePath(getFilePath());
 	};
 
 	
