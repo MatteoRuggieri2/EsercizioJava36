@@ -15,6 +15,7 @@ class FileSystemAccessTest {
 	static FileSystemAccess fsa;
 	final static Path projectDir = Paths.get(System.getProperty("user.dir")); // Path dinamico della project folder
 	final static String srcAbsPath = projectDir.toString() + "/src";
+	final static String testFileNameAbsolutePath = srcAbsPath + "/text_files/test_file.txt";
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,7 +33,6 @@ class FileSystemAccessTest {
 	@Test //OK
 	void testConstructorFileNamePath() {
 		String testFileNamePath = "src/text_files/test_file.txt";
-		String testFileNameAbsolutePath = srcAbsPath + "/text_files/test_file.txt";
 		fsa = new FileSystemAccess(testFileNamePath);
 		assertEquals(testFileNameAbsolutePath, fsa.getFilePath());
 	}
@@ -40,43 +40,42 @@ class FileSystemAccessTest {
 	@Test //OK
 	void testConstructorFile() {
 		File testFile = new File("src/text_files/test_file.txt");
-		String testFileNameAbsolutePath = srcAbsPath + "/text_files/test_file.txt";
 		fsa = new FileSystemAccess(testFile);
 		assertEquals(testFile, fsa.getFile());
 		assertEquals(testFileNameAbsolutePath, fsa.getFilePath());
 	}
 	
-	@Test
+	@Test //OK
 	void testGetFileNameEmpty() {
 		fsa.setFile(null);
 		assertEquals("", fsa.getFileName());
 	}
 	
-	@Test
+	@Test //OK
 	void testGetFileNameSetted() {
 		fsa.setFile(new File("src/text_files/test_file.txt"));
 		assertEquals("test_file.txt", fsa.getFileName());
 	}
 	
-	@Test
+	@Test //OK
 	void testGetFilePathEmpty() {
 		fsa.setFile(null);
 		assertEquals("", fsa.getFilePath());
 	}
 	
-	@Test
+	@Test //OK
 	void testGetFilePathSetted() {
 		fsa.setFile(new File("src/text_files/test_file.txt"));
-		assertEquals("C:\\Users\\SP-Formazione\\Desktop\\Matteo Ruggieri\\matteo-eclipse-workbanch\\EsercizioJava36\\src\\text_files\\test_file.txt", fsa.getFilePath());
+		assertEquals(testFileNameAbsolutePath, fsa.getFilePath());
 	}
 	
-	@Test
+	@Test //OK
 	void testGetFileCurrentEmpty() {
 		fsa.setFile(null);
 		assertEquals(Optional.empty(), fsa.getFileCurrent());
 	}
 	
-	@Test
+	@Test //OK
 	void testGetFileCurrentSetted() {
 		fsa.setFile(new File("src/text_files/test_file.txt"));
 		Optional<File> testOptFile = Optional.ofNullable(fsa.getFile());
