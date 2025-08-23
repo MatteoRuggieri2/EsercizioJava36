@@ -126,7 +126,7 @@ class FileSystemAccessTest {
 	
 	}
 	
-	@Test
+	@Test //OK
 	void testIsHiddenFileVisible() {
 		fsa.setFile(new File("src/text_files/test_file.txt"));
 		try {
@@ -136,14 +136,24 @@ class FileSystemAccessTest {
 		}
 	}
 	
-	@Test
+	@Test //OK
 	void testIsHiddenFileHidden() {
-		fsa.setFile(new File("src/folder_containing_hidden_file/hidden_file.txt"));
+		
+		// Crossplatform Test (win -> hidden checkbox checked, mac & lin -> '.' before file name)
+		boolean hiddenFileWin = false;
+		boolean hiddenFileMacLin = false;
+		
 		try {
-			assertTrue(fsa.isHidden());
+			fsa.setFile(new File("src/folder_containing_hidden_file/hidden_file.txt"));
+			hiddenFileWin = fsa.isHidden();
+			
+			fsa.setFile(new File("src/folder_containing_hidden_file/.hidden_file.txt"));
+			hiddenFileMacLin = fsa.isHidden();
 		} catch (FileSystemAccessError e) {
 			e.printStackTrace();
 		}
+		
+		assertTrue(hiddenFileWin || hiddenFileMacLin);
 	}
 	
 	@Test
