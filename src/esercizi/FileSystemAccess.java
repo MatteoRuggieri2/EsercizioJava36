@@ -99,7 +99,7 @@ public class FileSystemAccess implements FileSystem {
 		return this.file.isDirectory();
 	}
 
-	@Override
+	@Override //OK
 	public boolean isHidden() throws FileSystemAccessError {
 		// Se il file è null non può essere nè visibile nè nascosto, quindi lancio l'exception
 		if (this.getFileCurrent().isEmpty()) {

@@ -118,16 +118,11 @@ class FileSystemAccessTest {
 		assertTrue(fsa.isDirectory());
 	}
 	
-	@Test
+	@Test //OK
 	void testIsHiddenEmpty() {
 		fsa.setFile(null);
 //		assertThrows(FileSystemAccessError.class,  () -> fsa.isHidden());
-		assertThrows(FileSystemAccessError.class, fsa::isHidden);
-		
-		// QUESTO è UGUALE MA NON FUNZIONA
-//		assertThrows(FileSystemAccessError.class, () -> {
-//			fsa.isHidden();
-//        });
+		assertThrows(FileSystemAccessError.class, fsa::isHidden); // Abbreviato con method reference
 	
 	}
 	
