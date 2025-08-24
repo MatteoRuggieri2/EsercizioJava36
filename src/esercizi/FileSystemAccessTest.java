@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -138,11 +139,9 @@ class FileSystemAccessTest {
 	
 	@Test //OK
 	void testIsHiddenFileHidden() {
-		
 		// Crossplatform Test (win -> hidden checkbox checked, mac & lin -> '.' before file name)
 		boolean hiddenFileWin = false;
 		boolean hiddenFileMacLin = false;
-		
 		try {
 			fsa.setFile(new File("src/folder_containing_hidden_file/hidden_file.txt"));
 			hiddenFileWin = fsa.isHidden();
@@ -152,17 +151,17 @@ class FileSystemAccessTest {
 		} catch (FileSystemAccessError e) {
 			e.printStackTrace();
 		}
-		
+
 		assertTrue(hiddenFileWin || hiddenFileMacLin);
 	}
 	
-	@Test
+	@Test //OK
 	void testIsWritebleEmpty() {
 		fsa.setFile(null);
 		assertThrows(FileSystemAccessError.class, fsa::isWriteble);
 	}
 	
-	@Test
+	@Test //OK
 	void testIsWritebleFileNotWriteble() {
 		fsa.setFile(new File("src/folder_containing_not_writeble_file/not_writeble_file.txt"));
 		try {
@@ -172,7 +171,7 @@ class FileSystemAccessTest {
 		}
 	}
 	
-	@Test
+	@Test //OK
 	void testIsWritebleFileWriteble() {
 		fsa.setFile(new File("src/text_files/test_file.txt"));
 		try {
@@ -182,13 +181,13 @@ class FileSystemAccessTest {
 		}
 	}
 	
-	@Test
+	@Test //OK
 	void testIsReadebleEmpty() {
 		fsa.setFile(null);
 		assertThrows(FileSystemAccessError.class, fsa::isReadeble);
 	}
 	
-	@Test
+	@Test //OK
 	void testIsReadebleFileNotReadeble() {
 		fsa.setFile(new File("src/folder_containing_not_readeble_file/not_readeble_file.txt"));
 		try {
@@ -198,7 +197,7 @@ class FileSystemAccessTest {
 		}
 	}
 	
-	@Test
+	@Test //OK
 	void testIsReadebleFileReadeble() {
 		fsa.setFile(new File("src/text_files/test_file.txt"));
 		try {
@@ -208,39 +207,43 @@ class FileSystemAccessTest {
 		}
 	}
 	
-	@Test
+	@Test //OK
 	void testFolderOwnerEmpty() {
 		fsa.setFile(null);
 		assertEquals(Optional.empty(), fsa.folderOwner());
 	}
 	
-	@Test
+	@Test //OK
 	void testFolderOwnerSetted() {
 		fsa.setFile(new File("src/text_files/test_file.txt"));
 		File folderOwner = new File("src/text_files");
 		assertEquals(Optional.of(folderOwner), fsa.folderOwner());
 	}
 	
-	@Test
+	@Test //OK
 	void testFolderOwnerFileNotFound() {
 		fsa.setFile(new File("src/text_files/dshree.txt"));
 		File folderOwner = new File("src/text_files");
 		assertEquals(Optional.of(folderOwner), fsa.folderOwner());
 	}
 	
-	@Test
+	@Test //OK
 	void testFolderFilesNameEmpty() {
 		fsa.setFile(new File("src/test_empty_folder"));
 		assertArrayEquals(new File[0], fsa.folderFilesName());
 	}
 	
-	@Test
+	@Test //OK
 	void testFolderFilesNameFull() {
 		fsa.setFile(new File("src/text_files"));
-		File file1 = new File("src/text_files/test_file.txt");
-		File file2 = new File("src/text_files/test_file_2.txt");
-		File[] testFilesArray = {file1, file2};
-		assertArrayEquals(testFilesArray, fsa.folderFilesName());
+		File[] testFilesArray = {
+				new File("src/text_files/test_file.txt"),
+				new File("src/text_files/test_file_2.txt"),
+		};
+		File[] actual = fsa.folderFilesName();
+		Arrays.sort(testFilesArray);
+		Arrays.sort(actual);
+		assertArrayEquals(testFilesArray, actual);
 	}
 	
 	@Test

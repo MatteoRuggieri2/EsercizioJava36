@@ -64,7 +64,7 @@ public class FileSystemAccess implements FileSystem {
 	@Override //OK
 	public String getFilePath() {
 		// Se il file è presente ritorno il path assoluto, altrimenti stringa vuota.
-		if (this.getFileCurrent().isPresent()) {
+		if (getFileCurrent().isPresent()) {
 			return this.file.getAbsolutePath();
 		} else {
 			return "";
@@ -80,7 +80,7 @@ public class FileSystemAccess implements FileSystem {
 	@Override //OK
 	public boolean isFile() {
 		// Se il file è null ritorno false per evitare che restituisca "NullPointerException"
-		if (this.getFileCurrent().isEmpty()) {
+		if (getFileCurrent().isEmpty()) {
 			return false;
 		}
 		
@@ -91,7 +91,7 @@ public class FileSystemAccess implements FileSystem {
 	@Override //OK
 	public boolean isDirectory() {
 		// Se il file è null ritorno false
-		if (this.getFileCurrent().isEmpty()) {
+		if (getFileCurrent().isEmpty()) {
 			return false;
 		}
 		
@@ -102,7 +102,7 @@ public class FileSystemAccess implements FileSystem {
 	@Override //OK
 	public boolean isHidden() throws FileSystemAccessError {
 		// Se il file è null non può essere nè visibile nè nascosto, quindi lancio l'exception
-		if (this.getFileCurrent().isEmpty()) {
+		if (getFileCurrent().isEmpty()) {
 			// LANCIO L'EXCEPTION APPLICATIVA
 			throw new FileSystemAccessError("isHidden", null, "Il file non esiste", this.getFileName());
 		}
@@ -110,10 +110,10 @@ public class FileSystemAccess implements FileSystem {
 		return this.file.isHidden();
 	}
 
-	@Override
+	@Override //OK
 	public boolean isWriteble() throws FileSystemAccessError {
 		// Se il file è null non può essere nè scrivibile nè non scrivibile, quindi lancio l'exception
-		if (this.getFileCurrent().isEmpty()) {
+		if (getFileCurrent().isEmpty()) {
 			// LANCIO L'EXCEPTION APPLICATIVA
 			throw new FileSystemAccessError("isWriteble", null, "Il file non esiste", this.getFileName());
 		}
@@ -121,22 +121,22 @@ public class FileSystemAccess implements FileSystem {
 		return this.file.canWrite();
 	}
 
-	@Override
+	@Override //OK
 	public boolean isReadeble() throws FileSystemAccessError {
 		// Se il file è null non può essere nè leggibile nè non leggibile, quindi lancio l'exception
-		if (this.getFileCurrent().isEmpty()) {
+		if (getFileCurrent().isEmpty()) {
 			// LANCIO L'EXCEPTION APPLICATIVA
-			throw new FileSystemAccessError("isWriteble", null, "Il file non esiste", this.getFileName());
+			throw new FileSystemAccessError("isReadeble", null, "Il file non esiste", this.getFileName());
 		}
 		
 		return this.file.canRead();
 	}
 
 	// Questo metodo restituisce la cartella madre
-	@Override
+	@Override //OK
 	public Optional<File> folderOwner() {
 		// Se il file è presente ritorno la cartella madre, altrimenti un Optional.empty()
-		if (this.getFileCurrent().isPresent()) {
+		if (getFileCurrent().isPresent()) {
 			return Optional.of(this.file.getParentFile());
 		} else {
 			return Optional.empty();
@@ -144,10 +144,10 @@ public class FileSystemAccess implements FileSystem {
 				
 	}
 
-	@Override
+	@Override //OK
 	public File[] folderFilesName() {
-		// Se il file (ovvero la folder) è presente ritorno la lista di nomi dei file interni, altrimenti un array vuoto.
-		if (this.getFileCurrent().isPresent()) {
+		// Se il File (ovvero la folder) è presente, ritorno l'array di nomi dei file interni, altrimenti un array vuoto.
+		if (getFileCurrent().isPresent()) {
 			return this.file.listFiles();
 		} else {
 			return new File[0];
@@ -158,7 +158,7 @@ public class FileSystemAccess implements FileSystem {
 	public long fileSize() throws FileSystemAccessError {
 		
 		// Se il file è stato istanziato, ed è un file e non una folder, ritorno la sua dimensione.
-		if (this.getFileCurrent().isPresent() && this.isFile()) {
+		if (getFileCurrent().isPresent() && this.isFile()) {
 			return this.file.length();
 		}
 		
@@ -170,10 +170,10 @@ public class FileSystemAccess implements FileSystem {
 	public long fileSizeNested() throws FileSystemAccessError {
 		
 		// Se il file è stato istanziato, ed è un file e non una folder, ritorno la sua dimensione.
-		if (this.getFileCurrent().isPresent() && this.isFile()) {
+		if (getFileCurrent().isPresent() && this.isFile()) {
 			return this.file.length();
 			
-		} else if (this.getFileCurrent().isEmpty()) {
+		} else if (getFileCurrent().isEmpty()) {
 			// LANCIO L'EXCEPTION APPLICATIVA
 			throw new FileSystemAccessError("fileSize", null, "Il file non esiste", this.getFileName());
 		}
