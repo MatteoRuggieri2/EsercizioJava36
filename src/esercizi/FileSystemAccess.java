@@ -154,11 +154,11 @@ public class FileSystemAccess implements FileSystem {
 		}
 	}
 
-	@Override
+	@Override //OK
 	public long fileSize() throws FileSystemAccessError {
 		
 		// Se il file è stato istanziato, ed è un file e non una folder, ritorno la sua dimensione.
-		if (getFileCurrent().isPresent() && this.isFile()) {
+		if (getFileCurrent().isPresent() && isFile()) {
 			return this.file.length();
 		}
 		

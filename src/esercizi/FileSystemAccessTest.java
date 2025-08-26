@@ -246,19 +246,19 @@ class FileSystemAccessTest {
 		assertArrayEquals(testFilesArray, actual);
 	}
 	
-	@Test
+	@Test //OK
 	void testFileSizeEmpty() {
 		fsa.setFile(null);
 		assertThrows(FileSystemAccessError.class, fsa::fileSize);
 	}
 	
-	@Test
+	@Test //OK
 	void testFileSizeSettedFolder() {
 		fsa.setFile(new File("src/test_empty_folder"));
 		assertThrows(FileSystemAccessError.class, fsa::fileSize);
 	}
 	
-	@Test
+	@Test //OK
 	void testFileSizeSettedFile() {
 		try {
 			// Il file  "test_file.txt"  pesa 26 byte.
