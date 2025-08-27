@@ -275,13 +275,13 @@ class FileSystemAccessTest {
 		
 	}
 	
-	@Test
+	@Test //OK
 	void testFileSizeNestedEmpty() {
 		fsa.setFile(null);
 		assertThrows(FileSystemAccessError.class, fsa::fileSizeNested);
 	}
 	
-	@Test
+	@Test //OK
 	void testFileSizeNestedSettedFile() {
 		try {
 			// Il file  "test_file.txt"  pesa 26 byte.
@@ -293,7 +293,7 @@ class FileSystemAccessTest {
 		}
 	}
 	
-	@Test
+	@Test //OK
 	void testFileSizeNestedSettedDirectory() {
 		try {
 			// La cartella "text_files" pesa 33 byte.
@@ -305,7 +305,7 @@ class FileSystemAccessTest {
 		}
 	}
 	
-	@Test
+	@Test //OK
 	void testFileSizeNestedSettedSubforders() {
 		try {
 			// Sono 2 test_file e 1 test_file_2, quindi 26 + 26 + 7 = 59
@@ -317,10 +317,9 @@ class FileSystemAccessTest {
 		}
 	}
 	
-	@Test
+	@Test //OK
 	void testFileSizeNestedSettedEmptyDirectory() {
 		try {
-			// Il file  "test_file.txt"  pesa 26 byte.
 			fsa.setFile(new File("src/test_empty_folder"));
 			assertEquals(0, fsa.fileSizeNested());
 			

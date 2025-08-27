@@ -166,7 +166,7 @@ public class FileSystemAccess implements FileSystem {
 		throw new FileSystemAccessError("fileSize", null, "Il file non esiste", this.getFileName());
 	}
 
-	@Override
+	@Override //OK
 	public long fileSizeNested() throws FileSystemAccessError {
 		
 		// Se il file è stato istanziato, ed è un file e non una folder, ritorno la sua dimensione.
@@ -265,6 +265,7 @@ public class FileSystemAccess implements FileSystem {
 		return null;
 	}
 	
+	//OK
 	public long calculateFolderSize(File folder) {
 		long folderSize = 0;
 
