@@ -201,8 +201,7 @@ public class FileSystemAccess implements FileSystem {
 
 	@Override
 	public boolean mkDir(File dirPath) {
-		// TODO Auto-generated method stub
-		return false;
+		return dirPath.mkdir();
 	}
 
 	@Override
