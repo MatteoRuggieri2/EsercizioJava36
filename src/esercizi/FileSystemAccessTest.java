@@ -345,6 +345,7 @@ class FileSystemAccessTest {
 	@Test
 	void testDeleteDir() {
 		File file = new File("src/folder_mkdir_test");
+		assertTrue(fsa.mkDir(file)); // Creo la dir da eliminare
 		assertTrue(fsa.deleteDir(file));
 	}
 
