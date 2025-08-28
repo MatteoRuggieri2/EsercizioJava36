@@ -199,7 +199,7 @@ public class FileSystemAccess implements FileSystem {
 		return totalFileSize;
 	}
 
-	@Override
+	@Override //OK
 	public boolean mkDir(File dirPath) {
 		return dirPath.mkdir();
 	}
@@ -236,8 +236,7 @@ public class FileSystemAccess implements FileSystem {
 
 	@Override
 	public boolean deleteDir(File dirName) {
-		// TODO Auto-generated method stub
-		return false;
+		return dirName.delete();
 	}
 
 	@Override
