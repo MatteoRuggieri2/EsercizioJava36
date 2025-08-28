@@ -327,6 +327,15 @@ class FileSystemAccessTest {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+	void testMkDir() {
+		File file = new File("src/folder_mkdir_test");
+		assertTrue(fsa.mkDir(file));
+		
+		//TODO -> Elimina la folder per riportare allo stato precedente
+		//		  il test e non far fallire il prossimo test
+	}
 
 
 }
