@@ -329,7 +329,7 @@ class FileSystemAccessTest {
 	}
 	
 	@Test
-	void testMkDir() {
+	void testMkDirByFile() {
 		File file = new File("src/folder_mkdir_test");
 		assertTrue(fsa.mkDir(file));
 		assertTrue(fsa.deleteDir(file)); // Riporto allo stato precedente
@@ -343,7 +343,7 @@ class FileSystemAccessTest {
 	
 	
 	@Test
-	void testDeleteDir() {
+	void testDeleteDirByFile() {
 		File file = new File("src/folder_mkdir_test");
 		assertTrue(fsa.mkDir(file)); // Creo la dir da eliminare
 		assertTrue(fsa.deleteDir(file));
