@@ -206,7 +206,7 @@ public class FileSystemAccess implements FileSystem {
 
 	@Override //OK
 	public boolean mkDir(String dirName) {
-		return new File("src/" + dirName).mkdir();
+		return mkDir(new File("src/" + dirName));
 	}
 
 	@Override
