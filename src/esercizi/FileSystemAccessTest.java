@@ -354,6 +354,12 @@ class FileSystemAccessTest {
 		assertTrue(fsa.mkDir(file)); // Creo la dir da eliminare
 		assertTrue(fsa.deleteDir(file));
 	}
+	
+	@Test
+	void testDeleteDirByString() {
+		assertTrue(fsa.mkDir("folder_deletedir_test")); // Creo la dir da eliminare
+		assertTrue(fsa.deleteDir("folder_deletedir_test"));
+	}
 
 
 }
