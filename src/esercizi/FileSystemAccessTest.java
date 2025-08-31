@@ -335,6 +335,12 @@ class FileSystemAccessTest {
 		assertTrue(fsa.deleteDir(file)); // Riporto allo stato precedente
 	}
 	
+	@Test //TODO -> DA PUSHARE
+	void testMkDirByString() {
+		assertTrue(fsa.mkDir("testMkDirByString"));
+		//TODO Riporto allo stato precedente
+	}
+	
 	
 	
 	
