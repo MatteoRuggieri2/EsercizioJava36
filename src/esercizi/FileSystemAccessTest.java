@@ -341,6 +341,12 @@ class FileSystemAccessTest {
 		assertTrue(fsa.deleteDir("testMkDirByString"));
 	}
 	
+	@Test
+	void testExistsFileOK() {
+		fsa.setFile(new File("src/text_files/test_file.txt"));
+		assertTrue(fsa.exists());
+	}
+	
 	
 	
 	
