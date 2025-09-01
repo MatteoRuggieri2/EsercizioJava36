@@ -34,7 +34,7 @@ public class FileSystemAccess implements FileSystem {
 	    GETTERS AND SETTERS
 	--------------------------*/
 	public File getFile() {
-		return file;
+		return this.file;
 	}
 
 	public void setFile(File file) {
@@ -209,10 +209,9 @@ public class FileSystemAccess implements FileSystem {
 		return mkDir(new File("src/" + dirName));
 	}
 
-	@Override
+	@Override //OK
 	public boolean exists() {
-		// TODO Auto-generated method stub
-		return false;
+		return getFile().exists();
 	}
 
 	@Override
