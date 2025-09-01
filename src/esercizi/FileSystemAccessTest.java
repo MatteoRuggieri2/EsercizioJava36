@@ -347,6 +347,11 @@ class FileSystemAccessTest {
 		assertTrue(fsa.exists());
 	}
 	
+	@Test
+	void testExistsFileKO() {
+		fsa.setFile(new File("src/text_files/pauhsdfjk.txt"));
+		assertFalse(fsa.exists());
+	}
 	
 	
 	
