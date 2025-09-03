@@ -1,6 +1,7 @@
 package esercizi;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Optional;
 
 public class FileSystemAccess implements FileSystem {
@@ -214,10 +215,14 @@ public class FileSystemAccess implements FileSystem {
 		return getFile().exists();
 	}
 
-	@Override
+	@Override //OK
 	public boolean create(File file) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			return file.createNewFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
