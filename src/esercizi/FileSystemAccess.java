@@ -217,6 +217,7 @@ public class FileSystemAccess implements FileSystem {
 
 	@Override //OK
 	public boolean create(File file) {
+		if (file == null) { return false; }
 		try {
 			return file.createNewFile();
 		} catch (IOException e) {
@@ -237,7 +238,7 @@ public class FileSystemAccess implements FileSystem {
 		return false;
 	}
 
-	@Override
+	@Override //OK
 	public boolean deleteDir(File dirName) {
 		return dirName.delete();
 	}
