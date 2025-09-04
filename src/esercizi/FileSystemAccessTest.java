@@ -365,6 +365,13 @@ class FileSystemAccessTest {
 		assertFalse(fsa.exists());
 	}
 	
+	@Test
+	void testCreateFile() {
+		assertTrue(fsa.create(new File("src/test_create_file.txt")));
+		
+		//TODO -> Elimina il file creato per riportare allo stato precedente.
+	}
+	
 	
 	
 	
