@@ -372,6 +372,11 @@ class FileSystemAccessTest {
 		//TODO -> Elimina il file creato per riportare allo stato precedente.
 	}
 	
+	@Test
+	void testCreateFileNull() {
+		assertFalse(fsa.create(null));
+	}
+	
 	
 	
 	
