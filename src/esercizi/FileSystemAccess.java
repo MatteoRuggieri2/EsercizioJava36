@@ -248,10 +248,9 @@ public class FileSystemAccess implements FileSystem {
 		return deleteDir(new File("src/" + dirName));
 	}
 
-	@Override
+	@Override //OK
 	public boolean delete(File file) {
-		// TODO Auto-generated method stub
-		return false;
+		return file.delete();
 	}
 
 	@Override
