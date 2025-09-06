@@ -367,9 +367,9 @@ class FileSystemAccessTest {
 	
 	@Test
 	void testCreateFile() {
-		assertTrue(fsa.create(new File("src/test_create_file.txt")));
-		
-		//TODO -> Elimina il file creato per riportare allo stato precedente.
+		File file = new File("src/test_create_file.txt");
+		assertTrue(fsa.create(file));
+		assertTrue(fsa.delete(file));
 	}
 	
 	@Test
@@ -400,7 +400,7 @@ class FileSystemAccessTest {
 	@Test
 	void testDeleteByFile() {
 		File file = new File("src/test_create_file.txt");
-		assertTrue(fsa.create(file));
+		assertTrue(fsa.create(file)); // Creo la dir da eliminare
 		assertTrue(fsa.delete(file));
 		assertFalse(fsa.deleteDir(new File("src/folder_error")));
 	}
