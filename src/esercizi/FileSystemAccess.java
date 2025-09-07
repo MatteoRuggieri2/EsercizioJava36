@@ -2,7 +2,9 @@ package esercizi;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class FileSystemAccess implements FileSystem {
 	
@@ -232,7 +234,7 @@ public class FileSystemAccess implements FileSystem {
 		return false;
 	}
 
-	@Override //OK
+	@Override
 	public boolean deleteDir() {
 		return deleteDir(getFile());
 	}
@@ -252,10 +254,15 @@ public class FileSystemAccess implements FileSystem {
 		return file.delete();
 	}
 
-	@Override
+	@Override //OK
 	public String[] dirNested(File dir) {
-		// TODO Auto-generated method stub
-		return null;
+		String dirName = dir.getName();
+		String[] rowNestedDir = dir.list();
+		return List.of(rowNestedDir).stream()
+							 .filter(s -> !s.contains("."))  // Non deve contenere "."
+							 .map(s -> dirName + "/" + s)  // Aggiungo il nome della folder padre
+							 .collect(Collectors.toList())
+							 .toArray(new String[0]);
 	}
 
 	@Override
