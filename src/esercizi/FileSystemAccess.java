@@ -232,10 +232,9 @@ public class FileSystemAccess implements FileSystem {
 		return false;
 	}
 
-	@Override
+	@Override //OK
 	public boolean deleteDir() {
-		// TODO Auto-generated method stub
-		return false;
+		return deleteDir(getFile());
 	}
 
 	@Override //OK
