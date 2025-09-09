@@ -6,7 +6,6 @@ import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -393,6 +392,13 @@ class FileSystemAccessTest {
 	}
 	
 	@Test
+	void testDeleteDirKO() {
+		File file = new File("src/test_delete_dir_error");
+		fsa.setFile(file);
+		assertFalse(fsa.deleteDir(file));
+	}
+	
+	@Test
 	void testDeleteDirByFile() {
 		File file = new File("src/folder_deletedir_test");
 		assertTrue(fsa.mkDir(file)); // Creo la dir da eliminare
@@ -414,5 +420,5 @@ class FileSystemAccessTest {
 		assertTrue(fsa.delete(file));
 		assertFalse(fsa.deleteDir(new File("src/folder_error")));
 	}
-	
+
 }
