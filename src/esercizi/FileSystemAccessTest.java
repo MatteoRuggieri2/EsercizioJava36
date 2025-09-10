@@ -420,5 +420,19 @@ class FileSystemAccessTest {
 		assertTrue(fsa.delete(file));
 		assertFalse(fsa.deleteDir(new File("src/folder_error")));
 	}
+	
+	@Test
+	void testDirNested() {
+		File dir = new File("src/folder_containing_nested_dir");
+	    String[] expDirArr = {
+	        "folder_containing_nested_dir/dir_nested_1",
+	        "folder_containing_nested_dir/dir_nested_2",
+	        "folder_containing_nested_dir/dir_nested_3",
+	    };
+	    String[] dirArr = fsa.dirNested(dir);
+	    Arrays.sort(expDirArr);
+	    Arrays.sort(dirArr);
+	    assertArrayEquals(expDirArr, dirArr);
+	}
 
 }
