@@ -377,11 +377,12 @@ class FileSystemAccessTest {
 		assertFalse(fsa.create(null));
 	}
 	
-	
-	
-	
-	
-	
+	@Test //TODO -> DA MODIFICARE
+	void testEmptyDir() {
+		File dir = new File("src/folder_to_be_emptied");
+		fsa.setFile(dir);
+		assertTrue(fsa.emptyDir());
+	}
 	
 	@Test
 	void testDeleteDirOK() {
