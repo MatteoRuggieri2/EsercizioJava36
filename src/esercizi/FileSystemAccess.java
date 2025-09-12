@@ -228,27 +228,22 @@ public class FileSystemAccess implements FileSystem {
 		}
 	}
 
-	@Override //TODO -> DA FINIRE
+	@Override //OK
 	public boolean emptyDir() {
 		File dirToBeEmptied = getFile();
-		String[] fileToDel = dirNested(dirToBeEmptied); // Raccoglie solo dir e non file
-		List.of(fileToDel).stream()
-						  .forEach((url) -> deleteDir(new File("src/" + url)));
+		File[] elToDel = dirToBeEmptied.listFiles(); // Raccoglie sia dir che file
+		
+		List.of(elToDel).stream()
+		  .forEach((el) -> {
+			  // Se è una dir, richiamo ricorsivamente questo metodo per svuotarla
+			  if (el.isDirectory()) {
+				  FileSystemAccess fsa = new FileSystemAccess(el);
+				  fsa.emptyDir();
+			  }
+			  delete(file);
+		  });
+		
 		return dirNested(dirToBeEmptied).length < 1;
-		
-		// Elimino i file dentro la folder
-		// Dopo che ho la lista delle folder dentro:
-		// per ogni folder: elimino i file dentro e vedo se ha delle cartelle (se si, se vuote le elimino, altrimenti le svuoto e poi le elimino)
-		
-		//TODO LIST
-		/*
-		 * Controllare se la cartella è piena
-		 * Se è vuota eliminala
-		 * Se ci sono file eliminali con delete
-		 * Se ci sono dir rilancia questa funzione ricorsivamente per quella dir
-		 * 
-		 * 
-		 * */
 	}
 
 	@Override //OK
