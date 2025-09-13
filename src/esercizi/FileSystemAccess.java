@@ -240,7 +240,7 @@ public class FileSystemAccess implements FileSystem {
 				  FileSystemAccess fsa = new FileSystemAccess(el);
 				  fsa.emptyDir();
 			  }
-			  delete(file);
+			  delete(el);
 		  });
 		
 		return dirNested(dirToBeEmptied).length < 1;

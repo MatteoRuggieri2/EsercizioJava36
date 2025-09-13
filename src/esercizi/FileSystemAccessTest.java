@@ -6,6 +6,7 @@ import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -17,6 +18,7 @@ class FileSystemAccessTest {
 	final static Path projectDir = Paths.get(System.getProperty("user.dir")); // Path dinamico della project folder
 	final static String srcAbsPath = projectDir.toString() + "/src";
 	final static String testFileNameAbsolutePath = srcAbsPath + "/text_files/test_file.txt";
+	static boolean nestedDirIsEmpty = true;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -377,10 +379,33 @@ class FileSystemAccessTest {
 		assertFalse(fsa.create(null));
 	}
 	
-	@Test //TODO -> DA MODIFICARE
+	@Test
 	void testEmptyDir() {
-		File dir = new File("src/folder_to_be_emptied");
-		fsa.setFile(dir);
+		String folderToBeEmptiedURL = "src/folder_to_be_emptied";
+		String nestedDirURL = folderToBeEmptiedURL + "/dir_nested";
+		File folderToBeEmptied = new File(folderToBeEmptiedURL);
+		File nestedDir = new File(nestedDirURL);
+		
+		String[] fileToCreate = {
+				"test_file_1.txt",
+				"test_file_2.txt",
+				"test_file_3.txt",
+		};
+		
+		// Popolamento della DIR da svuotare
+		List.of(fileToCreate).stream()
+							 .forEach((fileName) -> {
+								 if (!nestedDir.exists()) {
+									 assertTrue(fsa.mkDir(nestedDir));
+									 assertTrue(fsa.create(new File(nestedDirURL + "/" + fileName)));
+								 } else {
+									 assertTrue(fsa.create(new File(folderToBeEmptiedURL + "/" + fileName)));;
+								 }
+								
+							 });
+		
+		// Svuoto la DIR
+		fsa.setFile(folderToBeEmptied);
 		assertTrue(fsa.emptyDir());
 	}
 	
