@@ -2,6 +2,7 @@ package esercizi;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -277,10 +278,22 @@ public class FileSystemAccess implements FileSystem {
 							 .toArray(new String[0]);
 	}
 
-	@Override
+	@Override //OK
 	public String[] dirParents(File dir) {
-		// TODO Auto-generated method stub
-		return null;
+		if (dir == null) {
+            return new String[0];
+        }
+
+        List<String> parents = new ArrayList<>();
+        File parent = dir.getParentFile();
+
+        // risalgo la catena dei genitori
+        while (parent != null) {
+            parents.add(parent.getAbsolutePath());
+            parent = parent.getParentFile();
+        }
+
+        return parents.toArray(new String[0]);
 	}
 	
 	//OK
