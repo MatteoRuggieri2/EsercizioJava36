@@ -289,7 +289,7 @@ public class FileSystemAccess implements FileSystem {
 
         // risalgo la catena dei genitori
         while (parent != null) {
-            parents.add(parent.getAbsolutePath());
+            parents.add(parent.getName());
             parent = parent.getParentFile();
         }
 
