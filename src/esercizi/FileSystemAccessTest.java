@@ -417,14 +417,14 @@ class FileSystemAccessTest {
 		assertTrue(fsa.mkDir(file));
 	}
 	
-	@Test
+	@Test //TODO -> NULL test
 	void testDeleteDirKO() {
 		File file = new File("src/test_delete_dir_error");
 		fsa.setFile(file);
 		assertFalse(fsa.deleteDir(file));
 	}
 	
-	@Test
+	@Test //TODO -> NULL test
 	void testDeleteDirByFile() {
 		File file = new File("src/folder_deletedir_test");
 		assertTrue(fsa.mkDir(file)); // Creo la dir da eliminare
@@ -439,7 +439,7 @@ class FileSystemAccessTest {
 		assertFalse(fsa.deleteDir("folder_error"));
 	}
 	
-	@Test
+	@Test //TODO -> NULL test
 	void testDeleteByFile() {
 		File file = new File("src/test_create_file.txt");
 		assertTrue(fsa.create(file)); // Creo la dir da eliminare
