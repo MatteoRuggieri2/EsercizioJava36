@@ -254,7 +254,7 @@ public class FileSystemAccess implements FileSystem {
 
 	@Override //OK
 	public boolean deleteDir(File dirName) {
-		return dirName.delete();
+		return dirName != null ? dirName.delete() : false;
 	}
 
 	@Override //OK
