@@ -417,11 +417,13 @@ class FileSystemAccessTest {
 		assertTrue(fsa.mkDir(file));
 	}
 	
-	@Test //TODO -> NULL test
+	@Test
 	void testDeleteDirKO() {
 		File file = new File("src/test_delete_dir_error");
+		File nullFile = null;
 		fsa.setFile(file);
 		assertFalse(fsa.deleteDir(file));
+		assertFalse(fsa.deleteDir(nullFile));
 	}
 	
 	@Test //TODO -> NULL test
