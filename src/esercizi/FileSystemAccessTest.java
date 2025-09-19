@@ -409,7 +409,7 @@ class FileSystemAccessTest {
 		assertTrue(fsa.emptyDir());
 	}
 	
-	@Test
+	@Test // Elimina il file memorizzato nell'istanza
 	void testDeleteDirOK() {
 		File file = new File("src/test_delete_dir");
 		fsa.setFile(file);
@@ -426,12 +426,18 @@ class FileSystemAccessTest {
 		assertFalse(fsa.deleteDir(nullFile));
 	}
 	
-	@Test //TODO -> NULL test
+	@Test
 	void testDeleteDirByFile() {
 		File file = new File("src/folder_deletedir_test");
 		assertTrue(fsa.mkDir(file)); // Creo la dir da eliminare
 		assertTrue(fsa.deleteDir(file));
 		assertFalse(fsa.deleteDir(new File("src/folder_error")));
+	}
+	
+	@Test
+	void testDeleteDirByFileKO() {
+		File file = null;
+		assertFalse(fsa.deleteDir(file));
 	}
 	
 	@Test
