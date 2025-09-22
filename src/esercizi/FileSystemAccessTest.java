@@ -344,7 +344,7 @@ class FileSystemAccessTest {
 	}
 	
 	@Test
-	void testExistsFileOK() {
+	void testExistsFile() {
 		fsa.setFile(new File("src/text_files/test_file.txt"));
 		assertTrue(fsa.exists());
 	}
@@ -356,7 +356,7 @@ class FileSystemAccessTest {
 	}
 	
 	@Test
-	void testExistsDirOK() {
+	void testExistsDir() {
 		fsa.setFile(new File("src/text_files"));
 		assertTrue(fsa.exists());
 	}
@@ -410,7 +410,7 @@ class FileSystemAccessTest {
 	}
 	
 	@Test // Elimina il file memorizzato nell'istanza
-	void testDeleteDirOK() {
+	void testDeleteDir() {
 		File file = new File("src/test_delete_dir");
 		fsa.setFile(file);
 		assertTrue(fsa.deleteDir());
@@ -461,7 +461,7 @@ class FileSystemAccessTest {
 		assertFalse(fsa.deleteDir(fileNull));
 	}
 	
-	@Test //TODO -> NULL test
+	@Test
 	void testDirNested() {
 		File dir = new File("src/folder_containing_nested_dir");
 	    String[] expDirArr = {
@@ -473,6 +473,12 @@ class FileSystemAccessTest {
 	    Arrays.sort(expDirArr);
 	    Arrays.sort(dirArr);
 	    assertArrayEquals(expDirArr, dirArr);
+	}
+	
+	@Test
+	void testDirNestedKO() {
+		File nullFile = null;
+		assertArrayEquals(new String[0], fsa.dirNested(nullFile));
 	}
 	
 	@Test

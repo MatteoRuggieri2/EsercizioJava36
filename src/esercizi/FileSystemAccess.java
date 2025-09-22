@@ -15,6 +15,8 @@ public class FileSystemAccess implements FileSystem {
 	
 	
 	
+	//TODO -> Ogni metodo deve aggiornare file con quello corrente
+	
 	/*------------------------
     	   CONSTRUCTORS
 	--------------------------*/
@@ -269,6 +271,9 @@ public class FileSystemAccess implements FileSystem {
 
 	@Override //OK
 	public String[] dirNested(File dir) {
+		if (dir == null) {
+			return new String[0];
+		}
 		String dirName = dir.getName();
 		String[] rowNestedDir = dir.list();
 		return List.of(rowNestedDir).stream()
