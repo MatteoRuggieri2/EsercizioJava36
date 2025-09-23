@@ -291,6 +291,7 @@ public class FileSystemAccess implements FileSystem {
             return new String[0];
         }
 
+		setFile(dir);
         List<String> parents = new ArrayList<>();
         File parent = dir.getParentFile();
 
