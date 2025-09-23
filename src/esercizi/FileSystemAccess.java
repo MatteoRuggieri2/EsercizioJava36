@@ -14,9 +14,6 @@ public class FileSystemAccess implements FileSystem {
 	private String filePath;  // path relativo
 	
 	
-	
-	//TODO -> Ogni metodo deve aggiornare file con quello corrente
-	
 	/*------------------------
     	   CONSTRUCTORS
 	--------------------------*/
@@ -26,12 +23,10 @@ public class FileSystemAccess implements FileSystem {
 	
 	public FileSystemAccess(String fileNamePath) {
 		setFile(new File(fileNamePath));
-		setFileNamePath(fileNamePath);
 	};
 	
 	public FileSystemAccess(File file) {
 		setFile(file);
-		setFileNamePath(getFilePath());
 	};
 
 	
@@ -53,22 +48,22 @@ public class FileSystemAccess implements FileSystem {
 	/*------------------------
 	    OVERRIDED METHODS
 	--------------------------*/
-	@Override //OK
+	@Override
 	public void setFileNamePath(String path) {
 		this.filePath = path;
 	}
 
-	@Override //OK
+	@Override
 	public String getFileName() {
 		// Se il file è presente ritorno il nome, altrimenti stringa vuota.
 		if (getFileCurrent().isPresent()) {
-			return this.file.getName();
+			return this.filePath;
 		} else {
 			return "";
 		}
 	}
 
-	@Override //OK
+	@Override
 	public String getFilePath() {
 		// Se il file è presente ritorno il path assoluto, altrimenti stringa vuota.
 		if (getFileCurrent().isPresent()) {
@@ -78,13 +73,13 @@ public class FileSystemAccess implements FileSystem {
 		}
 	}
 
-	@Override //OK
+	@Override
 	public Optional<File> getFileCurrent() {
 		// Ritorno un optional, se this.file è vuoto, "ofNullable" restituisce un Optional.empty().
 		return Optional.ofNullable(this.file);
 	}
 
-	@Override //OK
+	@Override
 	public boolean isFile() {
 		// Se il file è null ritorno false per evitare che restituisca "NullPointerException"
 		if (getFileCurrent().isEmpty()) {
@@ -95,7 +90,7 @@ public class FileSystemAccess implements FileSystem {
 		return this.file.isFile();
 	}
 
-	@Override //OK
+	@Override
 	public boolean isDirectory() {
 		// Se il file è null ritorno false
 		if (getFileCurrent().isEmpty()) {
@@ -106,7 +101,7 @@ public class FileSystemAccess implements FileSystem {
 		return this.file.isDirectory();
 	}
 
-	@Override //OK
+	@Override
 	public boolean isHidden() throws FileSystemAccessError {
 		// Se il file è null non può essere nè visibile nè nascosto, quindi lancio l'exception
 		if (getFileCurrent().isEmpty()) {
@@ -117,7 +112,7 @@ public class FileSystemAccess implements FileSystem {
 		return this.file.isHidden();
 	}
 
-	@Override //OK
+	@Override
 	public boolean isWriteble() throws FileSystemAccessError {
 		// Se il file è null non può essere nè scrivibile nè non scrivibile, quindi lancio l'exception
 		if (getFileCurrent().isEmpty()) {
@@ -128,7 +123,7 @@ public class FileSystemAccess implements FileSystem {
 		return this.file.canWrite();
 	}
 
-	@Override //OK
+	@Override
 	public boolean isReadeble() throws FileSystemAccessError {
 		// Se il file è null non può essere nè leggibile nè non leggibile, quindi lancio l'exception
 		if (getFileCurrent().isEmpty()) {
@@ -140,7 +135,7 @@ public class FileSystemAccess implements FileSystem {
 	}
 
 	// Questo metodo restituisce la cartella madre
-	@Override //OK
+	@Override
 	public Optional<File> folderOwner() {
 		// Se il file è presente ritorno la cartella madre, altrimenti un Optional.empty()
 		if (getFileCurrent().isPresent()) {
@@ -151,7 +146,7 @@ public class FileSystemAccess implements FileSystem {
 				
 	}
 
-	@Override //OK
+	@Override
 	public File[] folderFilesName() {
 		// Se il File (ovvero la folder) è presente, ritorno l'array di nomi dei file interni, altrimenti un array vuoto.
 		if (getFileCurrent().isPresent()) {
@@ -161,7 +156,7 @@ public class FileSystemAccess implements FileSystem {
 		}
 	}
 
-	@Override //OK
+	@Override
 	public long fileSize() throws FileSystemAccessError {
 		
 		// Se il file è stato istanziato, ed è un file e non una folder, ritorno la sua dimensione.
@@ -173,7 +168,7 @@ public class FileSystemAccess implements FileSystem {
 		throw new FileSystemAccessError("fileSize", null, "Il file non esiste", this.getFileName());
 	}
 
-	@Override //OK
+	@Override
 	public long fileSizeNested() throws FileSystemAccessError {
 		
 		// Se il file è stato istanziato, ed è un file e non una folder, ritorno la sua dimensione.
@@ -206,22 +201,22 @@ public class FileSystemAccess implements FileSystem {
 		return totalFileSize;
 	}
 
-	@Override //OK
+	@Override
 	public boolean mkDir(File dirPath) {
 		return dirPath.mkdir();
 	}
 
-	@Override //OK
+	@Override
 	public boolean mkDir(String dirName) {
 		return mkDir(new File("src/" + dirName));
 	}
 
-	@Override //OK
+	@Override
 	public boolean exists() {
 		return getFile().exists();
 	}
 
-	@Override //OK
+	@Override
 	public boolean create(File file) {
 		if (file == null) { return false; }
 		try {
@@ -233,7 +228,7 @@ public class FileSystemAccess implements FileSystem {
 		}
 	}
 
-	@Override //OK
+	@Override
 	public boolean emptyDir() {
 		File dirToBeEmptied = getFile();
 		File[] elToDel = dirToBeEmptied.listFiles(); // Raccoglie sia dir che file
@@ -251,27 +246,27 @@ public class FileSystemAccess implements FileSystem {
 		return dirNested(dirToBeEmptied).length < 1;
 	}
 
-	@Override //OK
+	@Override
 	public boolean deleteDir() {
 		return deleteDir(getFile());
 	}
 
-	@Override //OK
+	@Override
 	public boolean deleteDir(File dirName) {
 		return dirName != null ? dirName.delete() : false;
 	}
 
-	@Override //OK
+	@Override
 	public boolean deleteDir(String dirName) {
 		return deleteDir(new File("src/" + dirName));
 	}
 
-	@Override //OK
+	@Override
 	public boolean delete(File file) {
 		return file.delete();
 	}
 
-	@Override //OK
+	@Override
 	public String[] dirNested(File dir) {
 		if (dir == null) {
 			return new String[0];
@@ -286,7 +281,7 @@ public class FileSystemAccess implements FileSystem {
 							 .toArray(new String[0]);
 	}
 
-	@Override //OK
+	@Override
 	public String[] dirParents(File dir) {
 		if (dir == null) {
             return new String[0];
@@ -305,7 +300,7 @@ public class FileSystemAccess implements FileSystem {
         return parents.toArray(new String[0]);
 	}
 	
-	//OK
+
 	public long calculateFolderSize(File folder) {
 		long folderSize = 0;
 
