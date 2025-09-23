@@ -224,6 +224,7 @@ public class FileSystemAccess implements FileSystem {
 	public boolean create(File file) {
 		if (file == null) { return false; }
 		try {
+			setFile(file);
 			return file.createNewFile();
 		} catch (IOException e) {
 			e.printStackTrace();
