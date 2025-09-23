@@ -275,6 +275,7 @@ public class FileSystemAccess implements FileSystem {
 		if (dir == null) {
 			return new String[0];
 		}
+		setFile(dir);
 		String dirName = dir.getName();
 		String[] rowNestedDir = dir.list();
 		return List.of(rowNestedDir).stream()
