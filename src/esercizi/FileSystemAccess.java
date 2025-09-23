@@ -45,6 +45,7 @@ public class FileSystemAccess implements FileSystem {
 
 	public void setFile(File file) {
 		this.file = file;
+		setFileNamePath(file.getAbsolutePath());
 	}
 	
 	
